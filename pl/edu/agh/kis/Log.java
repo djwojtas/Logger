@@ -3,6 +3,7 @@ package pl.edu.agh.kis;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -21,6 +22,11 @@ public class Log implements Logger
      * Holds reference to PrintWriter that writes to output stream defined in constructor
      */
     private PrintWriter out;
+
+    /**
+     * Holds date format for logs
+     */
+    final String dateFormat = "yyyy-MM-dd HH:mm:ss.SSS";
 
     /**
      * Constructor of Log
@@ -42,40 +48,50 @@ public class Log implements Logger
         }
     }
 
+    /**
+     * Creates date in requested format
+     *
+     * @return Date as String object
+     */
+    private String getDate()
+    {
+        return (new SimpleDateFormat(dateFormat)).format(new Date());
+    }
+
     @Override
     public void trace(String lineToLog)
     {
-        out.println("TRACE " + new Date() + " -- " + lineToLog);
+        out.println("TRACE " + getDate() + " -- " + lineToLog);
     }
 
     @Override
     public void debug(String lineToLog)
     {
-        out.println("DEBUG " + new Date() + " -- " + lineToLog);
+        out.println("DEBUG " + getDate() + " -- " + lineToLog);
     }
 
     @Override
     public void info(String lineToLog)
     {
-        out.println("INFO " + new Date() + " -- " + lineToLog);
+        out.println("INFO " + getDate() + " -- " + lineToLog);
     }
 
     @Override
     public void warn(String lineToLog)
     {
-        out.println("WARN " + new Date() + " -- " + lineToLog);
+        out.println("WARN " + getDate() + " -- " + lineToLog);
     }
 
     @Override
     public void error(String lineToLog)
     {
-        out.println("ERROR " + new Date() + " -- " + lineToLog);
+        out.println("ERROR " + getDate() + " -- " + lineToLog);
     }
 
     @Override
     public void fatal(String lineToLog)
     {
-        out.println("FATAL " + new Date() + " -- " + lineToLog);
+        out.println("FATAL " + getDate() + " -- " + lineToLog);
     }
 
     @Override

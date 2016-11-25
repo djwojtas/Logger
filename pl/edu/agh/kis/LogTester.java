@@ -14,6 +14,9 @@ public class LogTester
         logger.log(Logger.Level.TRACE, "test");
         logger.log(Logger.Level.DEBUG, "test2");
         logger.log(Logger.Level.INFO, "test3");
+
+        Thread.sleep(500);
+
         logger.log(Logger.Level.WARN, "test4");
         logger.log(Logger.Level.ERROR, "test5");
         logger.log(Logger.Level.FATAL, "test6");
